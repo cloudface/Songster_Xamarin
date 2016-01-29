@@ -1,0 +1,5 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<resources>
+	<dimen name="space.bu">8dp</dimen>
+	<dimen name="space.2bu">16dp</dimen>
+</resources>
