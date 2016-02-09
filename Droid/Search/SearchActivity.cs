@@ -36,7 +36,7 @@ namespace Songster.Droid
 			ListView resultList = FindViewById<ListView> (Resource.Id.resultList);
 
 			searchButton.Click += (object sender, EventArgs e) => {
-				Presenter.search(searchField.Text);
+				Presenter.Search(searchField.Text);
 			};
 			this.Adapter = new SearchAdapter (this, ViewModel.SearchResults);
 			resultList.Adapter = this.Adapter;
@@ -44,7 +44,7 @@ namespace Songster.Droid
 
 		#region SearchView implementation
 
-		public void displayResults ()
+		public void DisplayResults ()
 		{
 			this.Adapter.NotifyDataSetChanged ();
 		}

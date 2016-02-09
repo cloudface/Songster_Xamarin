@@ -4,7 +4,7 @@ namespace Songster
 {
 	public interface SearchView
 	{
-		void displayResults ();
+		void DisplayResults ();
 	}
 }
 

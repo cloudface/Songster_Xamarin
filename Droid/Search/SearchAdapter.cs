@@ -6,11 +6,11 @@ using Android.Content;
 
 namespace Songster.Droid
 {
-	public class SearchAdapter : ArrayAdapter<SongDto>
+	public class SearchAdapter : ArrayAdapter<SongModel>
 	{
-		private List<SongDto> Songs { get; set;}
+		private List<SongModel> Songs { get; set;}
 
-		public SearchAdapter(Context context, List<SongDto> songs):base(context, 0) {
+		public SearchAdapter(Context context, List<SongModel> songs):base(context, 0) {
 			this.Songs = songs;
 		}
 

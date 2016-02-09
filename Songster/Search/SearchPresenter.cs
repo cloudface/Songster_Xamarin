@@ -16,13 +16,21 @@ namespace Songster
 			this.ViewModel = viewModel;
 		}
 
-		public void search (string text)
+		public void Search (string text)
 		{
-			this.SearchDataRepository.searchForSongs(text, delegate(List<SongDto> songs){
+			this.SearchDataRepository.SearchForSongs(text, delegate(List<SongDto> songs){
 				this.ViewModel.updateResults(songs);
-				this.SearchView.displayResults();
+				this.SearchView.DisplayResults();
 			});
 		}
+
+		public void AddSongToMyList(SongModel song){
+			SongDto selectedSong = ViewModel.SelectSong (song);
+			this.SearchDataRepository.AddSongToMyList (selectedSong, delegate(SongDto addedSong){
+				this.SearchView.DisplayResults();
+			});
+		}
+
 	}
 }
 
