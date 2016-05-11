@@ -44,8 +44,8 @@ namespace Songster.Droid
 		public partial class Color
 		{
 			
-			// aapt resource value: 0x7f040000
-			public const int white = 2130968576;
+			// aapt resource value: 0x7f050000
+			public const int white = 2131034112;
 			
 			static Color()
 			{
@@ -60,11 +60,11 @@ namespace Songster.Droid
 		public partial class Dimension
 		{
 			
-			// aapt resource value: 0x7f050001
-			public const int space_2bu = 2131034113;
+			// aapt resource value: 0x7f060001
+			public const int space_2bu = 2131099649;
 			
-			// aapt resource value: 0x7f050000
-			public const int space_bu = 2131034112;
+			// aapt resource value: 0x7f060000
+			public const int space_bu = 2131099648;
 			
 			static Dimension()
 			{
@@ -76,29 +76,45 @@ namespace Songster.Droid
 			}
 		}
 		
+		public partial class Drawable
+		{
+			
+			// aapt resource value: 0x7f020000
+			public const int ic_check_circle_black_24dp = 2130837504;
+			
+			static Drawable()
+			{
+				global::Android.Runtime.ResourceIdManager.UpdateIdValues();
+			}
+			
+			private Drawable()
+			{
+			}
+		}
+		
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f070004
-			public const int btnAddToMyList = 2131165188;
+			// aapt resource value: 0x7f080004
+			public const int btnAddToMyList = 2131230724;
 			
-			// aapt resource value: 0x7f070001
-			public const int btnSearch = 2131165185;
+			// aapt resource value: 0x7f080001
+			public const int btnSearch = 2131230721;
 			
-			// aapt resource value: 0x7f070000
-			public const int editSearch = 2131165184;
+			// aapt resource value: 0x7f080000
+			public const int editSearch = 2131230720;
 			
-			// aapt resource value: 0x7f070005
-			public const int imgAdded = 2131165189;
+			// aapt resource value: 0x7f080005
+			public const int imgAdded = 2131230725;
 			
-			// aapt resource value: 0x7f070006
-			public const int myButton = 2131165190;
+			// aapt resource value: 0x7f080006
+			public const int myButton = 2131230726;
 			
-			// aapt resource value: 0x7f070002
-			public const int resultList = 2131165186;
+			// aapt resource value: 0x7f080002
+			public const int resultList = 2131230722;
 			
-			// aapt resource value: 0x7f070003
-			public const int txtName = 2131165187;
+			// aapt resource value: 0x7f080003
+			public const int txtName = 2131230723;
 			
 			static Id()
 			{
@@ -113,14 +129,14 @@ namespace Songster.Droid
 		public partial class Layout
 		{
 			
-			// aapt resource value: 0x7f030000
-			public const int activity_search = 2130903040;
+			// aapt resource value: 0x7f040000
+			public const int activity_search = 2130968576;
 			
-			// aapt resource value: 0x7f030001
-			public const int item_search = 2130903041;
+			// aapt resource value: 0x7f040001
+			public const int item_search = 2130968577;
 			
-			// aapt resource value: 0x7f030002
-			public const int Main = 2130903042;
+			// aapt resource value: 0x7f040002
+			public const int Main = 2130968578;
 			
 			static Layout()
 			{
@@ -135,8 +151,8 @@ namespace Songster.Droid
 		public partial class Mipmap
 		{
 			
-			// aapt resource value: 0x7f020000
-			public const int Icon = 2130837504;
+			// aapt resource value: 0x7f030000
+			public const int Icon = 2130903040;
 			
 			static Mipmap()
 			{
@@ -151,20 +167,20 @@ namespace Songster.Droid
 		public partial class String
 		{
 			
-			// aapt resource value: 0x7f060001
-			public const int app_name = 2131099649;
+			// aapt resource value: 0x7f070001
+			public const int app_name = 2131165185;
 			
-			// aapt resource value: 0x7f060000
-			public const int hello = 2131099648;
+			// aapt resource value: 0x7f070000
+			public const int hello = 2131165184;
 			
-			// aapt resource value: 0x7f060004
-			public const int search_addtomylist_text = 2131099652;
+			// aapt resource value: 0x7f070004
+			public const int search_addtomylist_text = 2131165188;
 			
-			// aapt resource value: 0x7f060003
-			public const int search_btn_text = 2131099651;
+			// aapt resource value: 0x7f070003
+			public const int search_btn_text = 2131165187;
 			
-			// aapt resource value: 0x7f060002
-			public const int search_edittext_hint = 2131099650;
+			// aapt resource value: 0x7f070002
+			public const int search_edittext_hint = 2131165186;
 			
 			static String()
 			{
