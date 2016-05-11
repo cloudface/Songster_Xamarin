@@ -95,6 +95,10 @@
   </ItemGroup>
   <ItemGroup>
     <ImageAsset Include="Resources\Images.xcassets\AppIcons.appiconset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\ic_check_circle.imageset\Contents.json" />
+    <ImageAsset Include="Resources\Images.xcassets\ic_check_circle.imageset\ic_check_circle.png" />
+    <ImageAsset Include="Resources\Images.xcassets\ic_check_circle.imageset\ic_check_circle_2x.png" />
+    <ImageAsset Include="Resources\Images.xcassets\ic_check_circle.imageset\ic_check_circle_3x.png" />
   </ItemGroup>
   <ItemGroup>
     <InterfaceDefinition Include="Resources\LaunchScreen.xib" />
