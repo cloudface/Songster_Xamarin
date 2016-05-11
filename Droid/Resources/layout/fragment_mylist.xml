@@ -1,28 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:padding="@dimen/space.2bu">
-    <EditText
-        android:id="@+id/editSearch"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_toLeftOf="@+id/btnSearch"
-        android:hint="@string/search.edittext.hint" />
-    <Button
-        android:id="@+id/btnSearch"
+    <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:textColor="@color/white"
-        android:text="@string/search.btn.text"
-        tools:text="@string/search.btn.text" />
+        android:text="my List TODO" />
+<!--
     <ListView
         android:id="@+id/resultList"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/editSearch"
-        android:layout_marginTop="@dimen/space.2bu" />
+        android:layout_marginTop="@dimen/space.2bu" />-->
 </RelativeLayout>

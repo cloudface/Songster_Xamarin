@@ -95,26 +95,29 @@ namespace Songster.Droid
 		public partial class Id
 		{
 			
-			// aapt resource value: 0x7f080004
-			public const int btnAddToMyList = 2131230724;
-			
-			// aapt resource value: 0x7f080001
-			public const int btnSearch = 2131230721;
-			
-			// aapt resource value: 0x7f080000
-			public const int editSearch = 2131230720;
-			
 			// aapt resource value: 0x7f080005
-			public const int imgAdded = 2131230725;
-			
-			// aapt resource value: 0x7f080006
-			public const int myButton = 2131230726;
+			public const int btnAddToMyList = 2131230725;
 			
 			// aapt resource value: 0x7f080002
-			public const int resultList = 2131230722;
+			public const int btnSearch = 2131230722;
+			
+			// aapt resource value: 0x7f080001
+			public const int editSearch = 2131230721;
+			
+			// aapt resource value: 0x7f080006
+			public const int imgAdded = 2131230726;
+			
+			// aapt resource value: 0x7f080007
+			public const int myButton = 2131230727;
 			
 			// aapt resource value: 0x7f080003
-			public const int txtName = 2131230723;
+			public const int resultList = 2131230723;
+			
+			// aapt resource value: 0x7f080004
+			public const int txtName = 2131230724;
+			
+			// aapt resource value: 0x7f080000
+			public const int viewPager = 2131230720;
 			
 			static Id()
 			{
@@ -130,13 +133,19 @@ namespace Songster.Droid
 		{
 			
 			// aapt resource value: 0x7f040000
-			public const int activity_search = 2130968576;
+			public const int activity_main = 2130968576;
 			
 			// aapt resource value: 0x7f040001
-			public const int item_search = 2130968577;
+			public const int fragment_mylist = 2130968577;
 			
 			// aapt resource value: 0x7f040002
-			public const int Main = 2130968578;
+			public const int fragment_search = 2130968578;
+			
+			// aapt resource value: 0x7f040003
+			public const int item_search = 2130968579;
+			
+			// aapt resource value: 0x7f040004
+			public const int Main = 2130968580;
 			
 			static Layout()
 			{
