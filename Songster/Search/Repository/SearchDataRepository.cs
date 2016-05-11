@@ -25,12 +25,16 @@ namespace Songster
 			songs.Add (new SongDto ("Madam Gao"));
 			onSuccess (songs);
 		}
-
-
+			
 		public void AddSongToMyList (SongDto song, OnAddSuccessful onSuccess)
 		{
 			System.Diagnostics.Debug.WriteLine ("Adding song: " + song.Name);
 			onSuccess (song);
+		}
+
+		public void PurchaseSong (SongDto song, SearchRepositoryListener listener)
+		{
+			throw new NotImplementedException ();
 		}
 		#endregion
 	}

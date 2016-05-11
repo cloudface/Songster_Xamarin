@@ -31,6 +31,10 @@ namespace Songster
 			});
 		}
 
+		public void PurchaseSong(SongModel song){
+			SongDto selectedSong = ViewModel.SelectSong (song);
+
+		}
 	}
 }
 

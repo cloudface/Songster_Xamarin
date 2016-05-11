@@ -9,6 +9,7 @@ namespace Songster.iOS
 	{
 		UILabel titleLabel;
 		UIButton addButton;
+		UIButton buyButton;
 		UIImageView addedImage;
 
 		private SongModel Song { get; set; }
@@ -32,8 +33,13 @@ namespace Songster.iOS
 					Listener.OnAddPressed(Song);
 				}
 			};
+			buyButton = new UIButton ();
+			buyButton.SetTitle ("Buy", UIControlState.Normal);
+			buyButton.SetTitleColor (UIColor.FromRGB (0, 0, 255), UIControlState.Normal);
+			buyButton.TouchUpInside += (object sender, EventArgs e) => {
+			};
 			addedImage = new UIImageView (UIImage.FromBundle ("ic_check_circle"));
-			ContentView.AddSubviews(new UIView[] {titleLabel, addButton, addedImage});
+			ContentView.AddSubviews(new UIView[] {titleLabel, addButton, buyButton, addedImage});
 		}
 
 		public void UpdateCell (SongModel song)
@@ -52,12 +58,15 @@ namespace Songster.iOS
 			base.LayoutSubviews ();
 			titleLabel.Frame = new CGRect (5, 4, ContentView.Bounds.Width - 63, 25);
 			addButton.Frame = new CGRect (100, 4, 80, 25);
-			addedImage.Frame = new CGRect (180, 4, 25, 25);
+			buyButton.Frame = new CGRect (150, 4, 80, 25);
+			addedImage.Frame = new CGRect (250, 4, 25, 25);
 		}
 	}
 
 	public interface SearchResultCellListener {
 		void OnAddPressed(SongModel song);
+
+		void OnBuyPressed(SongModel song);
 	}
 }
 

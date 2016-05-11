@@ -41,11 +41,18 @@ namespace Songster.iOS
 			Listener.OnAddPressed (song);
 		}
 
+
+		public void OnBuyPressed (SongModel song)
+		{
+			Listener.OnBuyPressed (song);
+		}
 		#endregion
 	}
 
 	public interface SearchTableDataSourceListener {
 		void OnAddPressed(SongModel song);
+
+		void OnBuyPressed (SongModel song);
 	}
 }
 

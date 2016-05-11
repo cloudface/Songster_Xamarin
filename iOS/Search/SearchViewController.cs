@@ -50,6 +50,10 @@ namespace Songster.iOS
 			Presenter.AddSongToMyList (song);
 		}
 
+		public void OnBuyPressed (SongModel song)
+		{
+			Presenter.PurchaseSong (song);
+		}
 		#endregion
 		#endregion
 	}
