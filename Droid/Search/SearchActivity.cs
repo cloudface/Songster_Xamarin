@@ -15,7 +15,7 @@ using Android.Util;
 namespace Songster.Droid
 {
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@mipmap/icon")]			
-	public class SearchActivity : Activity, SearchView
+	public class SearchActivity : Activity, SearchView, SearchAdapterListener
 	{
 		private const String Tag = "SearchActivity";
 
@@ -38,7 +38,7 @@ namespace Songster.Droid
 			searchButton.Click += (object sender, EventArgs e) => {
 				Presenter.Search(searchField.Text);
 			};
-			this.Adapter = new SearchAdapter (this, ViewModel.SearchResults);
+			this.Adapter = new SearchAdapter (this, ViewModel.SearchResults, this);
 			resultList.Adapter = this.Adapter;
 		}
 
@@ -47,6 +47,15 @@ namespace Songster.Droid
 		public void DisplayResults ()
 		{
 			this.Adapter.NotifyDataSetChanged ();
+		}
+
+		#endregion
+
+		#region SearchAdapterListener implementation
+
+		public void OnAddPressed (SongModel song)
+		{
+			Presenter.AddSongToMyList (song);
 		}
 
 		#endregion

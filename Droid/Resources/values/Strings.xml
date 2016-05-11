@@ -5,4 +5,5 @@
 
 	<string name="search.edittext.hint">Enter song name...</string>
 	<string name="search.btn.text">Search</string>
+	<string name="search.addtomylist.text">Add</string>
 </resources>

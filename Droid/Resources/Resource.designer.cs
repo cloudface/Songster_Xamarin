@@ -79,17 +79,26 @@ namespace Songster.Droid
 		public partial class Id
 		{
 			
+			// aapt resource value: 0x7f070004
+			public const int btnAddToMyList = 2131165188;
+			
 			// aapt resource value: 0x7f070001
 			public const int btnSearch = 2131165185;
 			
 			// aapt resource value: 0x7f070000
 			public const int editSearch = 2131165184;
 			
-			// aapt resource value: 0x7f070003
-			public const int myButton = 2131165187;
+			// aapt resource value: 0x7f070005
+			public const int imgAdded = 2131165189;
+			
+			// aapt resource value: 0x7f070006
+			public const int myButton = 2131165190;
 			
 			// aapt resource value: 0x7f070002
 			public const int resultList = 2131165186;
+			
+			// aapt resource value: 0x7f070003
+			public const int txtName = 2131165187;
 			
 			static Id()
 			{
@@ -147,6 +156,9 @@ namespace Songster.Droid
 			
 			// aapt resource value: 0x7f060000
 			public const int hello = 2131099648;
+			
+			// aapt resource value: 0x7f060004
+			public const int search_addtomylist_text = 2131099652;
 			
 			// aapt resource value: 0x7f060003
 			public const int search_btn_text = 2131099651;
