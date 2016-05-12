@@ -13,6 +13,7 @@ using Android.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.App;
 
+//CI Build 1
 namespace Songster.Droid
 {	
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@mipmap/icon")]			
