@@ -13,7 +13,7 @@ using Android.Widget;
 using Android.Support.V4.View;
 using Android.Support.V4.App;
 
-//CI Build 3
+//CI Build 4
 namespace Songster.Droid
 {	
 	[Activity (Label = "@string/app_name", MainLauncher = true, Icon = "@mipmap/icon")]			
@@ -26,8 +26,6 @@ namespace Songster.Droid
 
 			ViewPager viewPager = FindViewById<ViewPager> (Resource.Id.viewPager);
 			viewPager.Adapter = new MainViewPagerAdapter (SupportFragmentManager);
-
-			fafafa
 		}
 	}
 }

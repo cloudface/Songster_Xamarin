@@ -68,12 +68,12 @@ task :clean => [:clean_screenshots] do
       "./obj",
       "./test_servers",
       "./testresults.html",
-      "./Tasky.iOS/bin",
-      "./Tasky.iOS/obj",
-      "./Tasky.Droid/bin",
-      "./Tasky.Droid/obj",
-      "./Tasky.Core/bin",
-      "./Tasky.Core/obj"
+      "./Songster.iOS/bin",
+      "./Songster.iOS/obj",
+      "./Songster.Droid/bin",
+      "./Songster.Droid/obj",
+      "./Songster.Core/bin",
+      "./Songster.Core/obj"
   ]
 
   directories_to_delete.each { |x|
@@ -98,16 +98,16 @@ task :clean_screenshots do
 end
 
 task :build_android => [:clean] do
-  system("#{@xbuild} /verbosity:diagnostic /t:SignAndroidPackage /p:Configuration=Release ./Tasky.Droid/Tasky.Droid.csproj")
+  system("#{@xbuild} /verbosity:diagnostic /t:SignAndroidPackage /p:Configuration=Release Droid/Songster.Droid.csproj")
 end
 
 task :build_ios => [:clean] do
   puts "Build the IPA:"
-  system("#{@mdtool} \"--configuration:Debug|iPhone\" TaskyXS_Mac.sln")
-  system("#{@mdtool} \"--configuration:Release|iPhone\" TaskyXS.sln")
+#  system("#{@mdtool} \"--configuration:Debug|iPhone\" TaskyXS_Mac.sln")
+  system("#{@mdtool} \"--configuration:Release|iPhone\" Songster.sln")
 
   puts "Build the iPhoneSimulator:"
-  system("#{@mdtool} build \"--configuration:Debug|iPhoneSimulator\" TaskyXS.sln")
+  system("#{@mdtool} build \"--configuration:Debug|iPhoneSimulator\" Songster.sln")
 end
 
 desc "Submits the APK and then the IPA to Test Cloud"
