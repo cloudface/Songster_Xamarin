@@ -50,8 +50,6 @@ namespace Songster.Droid
 			this.Adapter = new SearchAdapter (Activity, ViewModel.SearchResults, this);
 			resultList.Adapter = this.Adapter;
 
-			resultList.farfoostus ();
-
 			return view;
 		}
 
