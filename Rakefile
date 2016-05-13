@@ -98,6 +98,7 @@ task :clean_screenshots do
 end
 
 task :build_android => [:clean] do
+	puts "Build Android"
   system("#{@xbuild} /verbosity:diagnostic /t:SignAndroidPackage /p:Configuration=Release Droid/Songster.Droid.csproj")
 end
 
@@ -139,3 +140,5 @@ desc "Installs the components from the Component store"
 task :install_components do
     system " #{@xamarin_component} restore TaskyXS_Mac.sln"
 end
+
+#task :runall => Rake::Task.tasks
