@@ -22,30 +22,6 @@ def fetch(key)
   val
 end
 
-# Resolves dependencies using nuget. Requires a the location of the packages.config file.
-def resolveDependencies(packagesConfig)
-	puts "Resolving dependencies using #{packagesConfig}"
-  file = File.new(packagesConfig)
-        doc = REXML::Document.new(file)
-        doc.elements.each("packages/package") do |elm|
-                package=elm.attributes["id"]
-                version=elm.attributes["version"]
-
-                packagePath="#{LIB_PATH}/#{package}"
-                versionInfo="#{packagePath}/version.info"
-                currentVersion=IO.read(versionInfo) if File.exists?(versionInfo)
-                packageExists = File.directory?(packagePath)
-                
-                if(!(version or packageExists) or currentVersion!= version) then
-                        feedsArg = FEEDS.map{ |x| "-Source " + x }.join (' ')
-                        versionArg = "-Version #{version}" if version
-                        sh "nuget install #{package} #{versionArg} -o \"#{LIB_PATH}\" #{feedsArg} -ExcludeVersion" do |ok,results|
-                                File.open(versionInfo,'w'){|f| f.write(version)} if ok
-                        end
-                end
-        end
-end
-
 if File.exists? ('rake_env')
   load 'rake_env'
 else
@@ -68,15 +44,6 @@ end
 @testcloud_api_key = fetch(:testcloud_api_key)
 @android_device_id = fetch(:android_device_id)
 @ios_device_id = fetch(:ios_device_id)
-
-# The directory where the nuget packages will get downloaded into
-LIB_PATH = File.expand_path("packages")
-
-#The nuget feeds
-FEEDS = [
-        #Your internal repo can go here
-        "http://go.microsoft.com/fwlink/?LinkID=206669"
-]
 
 task :default => [:clean, :dependencies, :build]
 
@@ -121,5 +88,5 @@ task :build_ios => [:clean] do
 	#Fail if the IPA was not generated
 	puts "Checking for generated IPA file"
 	raise "Missing the IPA #{@ipa}." unless File.exists?(@ipa)
-	puts "SUCCESS: IPA file exists!"
+	puts "SUCCESS: IPA file #{@ipa} exists!"
 end
