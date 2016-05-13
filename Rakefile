@@ -36,7 +36,7 @@ end
 
 @test_assembly_dir = "./Tasky.UITest/bin/Debug/"
 @apk = './Tasky.Droid/bin/Release/com.xamarin.samples.taskydroid-Signed.apk'
-@ipa = './Tasky.iOS/bin/iPhone/Debug/TaskyiOS.app'
+@ipa = 'iOS/bin/iPhone/Release/Songster.iOS.app'
 @dsym = './Tasky.iOS/bin/iPhone/Debug/TaskyiOS.app.dSYM'
 
 # These values will come from either the file rake_env or environment variables
@@ -64,16 +64,10 @@ end
 desc "Cleans the project"
 task :clean => [:clean_screenshots] do
   directories_to_delete = [
-      "./bin",
-      "./obj",
-      "./test_servers",
-      "./testresults.html",
-      "./Songster.iOS/bin",
-      "./Songster.iOS/obj",
-      "./Songster.Droid/bin",
-      "./Songster.Droid/obj",
-      "./Songster.Core/bin",
-      "./Songster.Core/obj"
+      "./iOS/bin",
+      "./iOS/obj",
+      "./Droid/bin",
+      "./Droid/obj"
   ]
 
   directories_to_delete.each { |x|
@@ -109,6 +103,11 @@ task :build_ios => [:clean] do
 
   puts "Build the iPhoneSimulator:"
   system("#{@mdtool} build \"--configuration:Debug|iPhoneSimulator\" Songster.sln")
+
+	#Fail if the IPA was not generated
+	puts "Checking for generated IPA file"
+	raise "Missing the IPA #{@ipa}." unless File.exists?(@ipa)
+	puts "SUCCESS: IPA file exists!"
 end
 
 desc "Submits the APK and then the IPA to Test Cloud"

@@ -23,6 +23,8 @@ namespace Songster.iOS
 			Presenter = new SearchPresenter (this, ViewModel, new SearchDataRepository ());
 
 			this.ResultsTable.DataSource = new SearchTableDataSource(this.ViewModel, this);
+
+			fafafa
 		}
 
 		public override void DidReceiveMemoryWarning ()
