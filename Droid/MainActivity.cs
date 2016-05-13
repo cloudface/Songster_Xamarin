@@ -27,7 +27,7 @@ namespace Songster.Droid
 			ViewPager viewPager = FindViewById<ViewPager> (Resource.Id.viewPager);
 			viewPager.Adapter = new MainViewPagerAdapter (SupportFragmentManager);
 
-			fafafa
+			asfasf
 		}
 	}
 }

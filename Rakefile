@@ -36,7 +36,7 @@ end
 @xamarin_component = "#{@mono}  ./xamarin-component.exe"
 
 @test_assembly_dir = "./Tasky.UITest/bin/Debug/"
-@apk = './Tasky.Droid/bin/Release/com.xamarin.samples.taskydroid-Signed.apk'
+@apk = 'Droid/bin/Release/com.noser.example.xami.songster-Signed.apk'
 @ipa = 'iOS/bin/iPhone/Release/Songster.iOS.app'
 @dsym = './Tasky.iOS/bin/iPhone/Debug/TaskyiOS.app.dSYM'
 
@@ -62,9 +62,6 @@ task :clean do
 end
 
 task :dependencies do
-
-	#resolveDependencies("iOS/packages.config")
-	#resolveDependencies("Droid/packages.config")
 	sh "nuget restore Songster.sln"
 end
 
@@ -75,14 +72,16 @@ task :build => [:build_android] do
 end
 
 task :build_android => [:clean] do
-	puts "Build Android"
+	puts "Build Android App"
 	raise "Unable to find #{@xbuild}." unless File.exists?(@xbuild)
 	system("#{@xbuild} /verbosity:diagnostic /t:SignAndroidPackage /p:Configuration=Release Droid/Songster.Droid.csproj")
-	puts "Done building Android"
+	raise "Missing the APK #{@apk} " unless File.exists?(@apk)
+	puts "SUCCESS: APK file #{@apk} exists!"
+	puts "Done building Android App"
 end
 
 task :build_ios => [:clean] do
-  puts "Build the IPA:"
+  puts "Build iOS App"
   system("#{@mdtool} \"--configuration:Release|iPhone\" Songster.sln")
 
   puts "Build the iPhoneSimulator:"
@@ -92,4 +91,5 @@ task :build_ios => [:clean] do
 	puts "Checking for generated IPA file"
 	raise "Missing the IPA #{@ipa}." unless File.exists?(@ipa)
 	puts "SUCCESS: IPA file #{@ipa} exists!"
+	puts "Done building iOS App"
 end
