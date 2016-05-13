@@ -34,7 +34,6 @@ namespace Songster.iOS
 		partial void BtnSearch_TouchUpInside (UIButton sender)
 		{
 			this.Presenter.Search(this.FieldSearch.Text);
-			asf
 		}
 
 		#region SearchView implementation
