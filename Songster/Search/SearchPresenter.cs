@@ -29,8 +29,6 @@ namespace Songster
 			this.SearchDataRepository.AddSongToMyList (selectedSong, delegate(SongDto addedSong){
 				this.SearchView.DisplayResults();
 			});
-
-			selectedSong.Gurgle (foot);
 		}
 
 		public void PurchaseSong(SongModel song){
