@@ -66,8 +66,7 @@ task :dependencies do
 end
 
 desc "Compiles the Android and iOS projects."
-task :build => [:build_android] do
-#task :build => [:build_android, :build_ios] do
+task :build => [:build_android, :build_ios] do
 
 end
 
