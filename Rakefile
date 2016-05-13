@@ -1,5 +1,6 @@
 require 'fileutils'
 require 'rubygems'
+require 'rexml/document'
 
 # Some utility functions
 def set(key, value)
@@ -19,6 +20,30 @@ def fetch(key)
     val = true
   end
   val
+end
+
+# Resolves dependencies using nuget. Requires a the location of the packages.config file.
+def resolveDependencies(packagesConfig)
+	puts "Resolving dependencies using #{packagesConfig}"
+  file = File.new(packagesConfig)
+        doc = REXML::Document.new(file)
+        doc.elements.each("packages/package") do |elm|
+                package=elm.attributes["id"]
+                version=elm.attributes["version"]
+
+                packagePath="#{LIB_PATH}/#{package}"
+                versionInfo="#{packagePath}/version.info"
+                currentVersion=IO.read(versionInfo) if File.exists?(versionInfo)
+                packageExists = File.directory?(packagePath)
+                
+                if(!(version or packageExists) or currentVersion!= version) then
+                        feedsArg = FEEDS.map{ |x| "-Source " + x }.join (' ')
+                        versionArg = "-Version #{version}" if version
+                        sh "nuget install #{package} #{versionArg} -o \"#{LIB_PATH}\" #{feedsArg} -ExcludeVersion" do |ok,results|
+                                File.open(versionInfo,'w'){|f| f.write(version)} if ok
+                        end
+                end
+        end
 end
 
 if File.exists? ('rake_env')
@@ -44,25 +69,19 @@ end
 @android_device_id = fetch(:android_device_id)
 @ios_device_id = fetch(:ios_device_id)
 
-task :default => [:clean, :build]
+# The directory where the nuget packages will get downloaded into
+LIB_PATH = File.expand_path("packages")
 
-task :require_environment do
-  if @testcloud_api_key.nil? || 0 == @testcloud_api_key.length
-    raise Exception.new("No Test Cloud API specified.")
-  end
+#The nuget feeds
+FEEDS = [
+        #Your internal repo can go here
+        "http://go.microsoft.com/fwlink/?LinkID=206669"
+]
 
-  if @android_device_id.nil? || 0 == @android_device_id.length
-    raise Exception.new("No Android Device ID specified.")
-  end
-
-  if @ios_device_id.nil? || 0 == @ios_device_id.length
-    raise Exception.new("No iOS Device ID specified.")
-  end
-
-end
+task :default => [:clean, :dependencies, :build]
 
 desc "Cleans the project"
-task :clean => [:clean_screenshots] do
+task :clean do
   directories_to_delete = [
       "./iOS/bin",
       "./iOS/obj",
@@ -75,20 +94,16 @@ task :clean => [:clean_screenshots] do
   }
 end
 
+task :dependencies do
+
+	#resolveDependencies("iOS/packages.config")
+	#resolveDependencies("Droid/packages.config")
+	sh "nuget restore Songster.sln"
+end
+
 desc "Compiles the Android and iOS projects."
 task :build => [:build_android, :build_ios] do
 
-end
-
-desc "Delete the existing screen shots and calabash reports."
-task :clean_screenshots do
-  directories_to_delete = [
-      "./screenshots/"
-  ]
-
-  directories_to_delete.each { |directory|
-    rm_rf directory
-  }
 end
 
 task :build_android => [:clean] do
@@ -98,7 +113,6 @@ end
 
 task :build_ios => [:clean] do
   puts "Build the IPA:"
-#  system("#{@mdtool} \"--configuration:Debug|iPhone\" TaskyXS_Mac.sln")
   system("#{@mdtool} \"--configuration:Release|iPhone\" Songster.sln")
 
   puts "Build the iPhoneSimulator:"
@@ -109,35 +123,3 @@ task :build_ios => [:clean] do
 	raise "Missing the IPA #{@ipa}." unless File.exists?(@ipa)
 	puts "SUCCESS: IPA file exists!"
 end
-
-desc "Submits the APK and then the IPA to Test Cloud"
-task :xtc => [:xtc_android, :xtc_ios] do
-
-end
-
-desc "Compile the APK and submits it to Test Cloud"
-task :xtc_android => [:require_environment, :build_android] do
-  raise "Missing the APK #{@apk}." unless File.exists?(@apk)
-  tests_passed = system("#{@test_cloud} submit #{@apk} #{@testcloud_api_key} --devices #{@android_device_id} --series \"Android\"  --assembly-dir #{@test_assembly_dir} --app-name \"TaskyPro (UITest)\"")
-  raise "Some tests failed in test cloud - check the build log. #{$?}" unless tests_passed
-end
-
-desc "Recompiles the IPA and submits it to Test Cloud."
-task :xtc_ios => [:require_environment, :build_ios] do
-  raise "Missing the IPA #{@ipa}." unless File.exists?(@ipa)
-  tests_passed = system("#{@test_cloud} submit #{@ipa} #{@testcloud_api_key} --devices #{@ios_device_id} --series \"iOS\"  --assembly-dir #{@test_assembly_dir} --app-name \"TaskyPro (UITest)\" --dsym #{@dsym}")
-  raise "Some tests failed in test cloud - check the build log. #{$?}" unless tests_passed
-end
-
-desc "Compiles a release APK and then will install it in the default emulator or attached device."
-task :test_android => [:build_android] do
-  system "calabash-android run #{@apk} -p android"
-end
-
-
-desc "Installs the components from the Component store"
-task :install_components do
-    system " #{@xamarin_component} restore TaskyXS_Mac.sln"
-end
-
-#task :runall => Rake::Task.tasks
