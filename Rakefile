@@ -31,7 +31,7 @@ end
 # Hardcoding these paths here - adjust them as necessary. These shouldn't change much (if at all)
 @mono = '/usr/bin/mono'
 @mdtool = '/Applications/Xamarin\\ Studio.app/Contents/MacOS/mdtool build'
-@xbuild = '/usr/bin/xbuild'
+@xbuild = '/Library/Frameworks/Mono.framework/Versions/4.4.0/bin/xbuild'
 @test_cloud = "#{@mono} ./packages/Xamarin.UITest.0.5.0/tools/test-cloud.exe"
 @xamarin_component = "#{@mono}  ./xamarin-component.exe"
 
@@ -69,13 +69,16 @@ task :dependencies do
 end
 
 desc "Compiles the Android and iOS projects."
-task :build => [:build_android, :build_ios] do
+task :build => [:build_android] do
+#task :build => [:build_android, :build_ios] do
 
 end
 
 task :build_android => [:clean] do
 	puts "Build Android"
-  system("#{@xbuild} /verbosity:diagnostic /t:SignAndroidPackage /p:Configuration=Release Droid/Songster.Droid.csproj")
+	raise "Unable to find #{@xbuild}." unless File.exists?(@xbuild)
+	system("#{@xbuild} /verbosity:diagnostic /t:SignAndroidPackage /p:Configuration=Release Droid/Songster.Droid.csproj")
+	puts "Done building Android"
 end
 
 task :build_ios => [:clean] do
